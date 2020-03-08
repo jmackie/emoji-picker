@@ -148,7 +148,7 @@ fn main() {
 // Add CSS to the application.
 fn init_styles() {
     let styles = b"
-        #window {
+        #application_window {
             background-color: #ffffff;
         }
 
