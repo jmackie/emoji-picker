@@ -1,0 +1,9 @@
+# Cargo
+/target
+**/*.rs.bk
+
+# Nix
+/result
+
+# Generated modules
+/src/emojis.rs

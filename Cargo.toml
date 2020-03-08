@@ -1,0 +1,26 @@
+# https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[package]
+name = "emoji-picker"
+version = "0.1.0"
+authors = ["Jordan Mackie <jmackie@protonmail.com>"]
+description = "Picker GUI thing for emoji power users"
+edition = "2018"
+build = "build.rs"
+
+[dependencies]
+log = "0.4.0"
+env_logger = "0.7.1"
+gtk = { version = "^0", features = ["v3_16"] }
+gio = { version = "^0", features = ["v2_44"] }
+gdk = "^0"
+glib = "^0"
+lazy_static = "1.4.0"
+clap = "2.33.0"
+rand = "0.7.3"
+
+[build-dependencies]
+serde = { version = "1.0.104", features = ["derive"] }
+serde_json = "1.0.48"
+quote = "1.0"
+proc-macro2 = "1.0.9"
