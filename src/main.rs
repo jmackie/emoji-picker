@@ -39,14 +39,14 @@ impl Options {
                 .takes_value(true)
                 .value_name("WIDTH")
                 .validator(parse_validator::<i32>)
-                .default_value("400")
+                .default_value("300")
                 .help("Sets the window width"),
             clap::Arg::with_name("height")
                 .long("height")
                 .takes_value(true)
-                .value_name("WIDTH")
+                .value_name("HEIGHT")
                 .validator(parse_validator::<i32>)
-                .default_value("250")
+                .default_value("150")
                 .help("Sets the window height"),
             clap::Arg::with_name("n_matches")
                 .long("n-matches")
