@@ -22,7 +22,7 @@ in buildRustPackage {
   buildInputs = gtkBuildInputs;
   doCheck = false; # nothing to check atm
   cargoSha256 = # pkgs.lib.fakeSha256
-    "04371bf0icwrd4sbyysd8mkxzhq12wy4cn8zyc4smckyvw6p32j3";
+    "1xpq7p5y10fn6mxwlgbm5ajf9ixrq0gia8v9rfbz4smhj9bbvw60";
 
   # https://github.com/NixOS/nixpkgs/issues/79975
   legacyCargoFetcher = true;
