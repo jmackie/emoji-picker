@@ -1,5 +1,7 @@
 # `emoji-picker`
 
+[![Build Status](https://travis-ci.org/jmackie/emoji-picker.svg?branch=master)](https://travis-ci.org/jmackie/emoji-picker)
+
 Gonna do this soon, promise.
 
 ## TODOs
