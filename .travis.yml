@@ -17,7 +17,7 @@ script:
       nix-env -iA cachix -f https://cachix.org/api/v1/install
       cachix authtoken "$CACHIX_AUTH_TOKEN"
       cachix use jmackie
-      cachix push --watch-store emoji-picker &
+      cachix push --watch-store jmackie &
     fi
 
   - nix-build
