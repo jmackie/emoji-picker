@@ -8,22 +8,24 @@ let
     gtk3
     glib
   ];
-  buildRustPackage = pkgs.rustPlatform.buildRustPackage.override {
-    cargo = rust-channel.cargo;
-    # https://github.com/mozilla/nixpkgs-mozilla/issues/21
-    rustc = rust-channel.rust;
-  };
-  Cargo_toml = builtins.fromTOML (builtins.readFile ./Cargo.toml);
 
-in buildRustPackage {
-  pname = Cargo_toml.package.name;
+  naersk = pkgs.callPackage (pkgs.fetchFromGitHub {
+    owner = "nmattia";
+    repo = "naersk";
+    # 2020-02-28T20:38:00+01:00
+    rev = "ee15d1214a8fb58967a24d629062e4ccdd9a925a";
+    sha256 = "1x5yjbizwvsqrwvfjaljd6wsfmd3ijvw2zgk89545nipqi5ibx7b";
+  }) {
+    cargo = rust-channel.cargo;
+    rustc = rust-channel.rust;
+    #                   ^^^^
+    # https://github.com/mozilla/nixpkgs-mozilla/issues/21
+  };
+
+  Cargo_toml = builtins.fromTOML (builtins.readFile ./Cargo.toml);
+in naersk.buildPackage {
+  name = Cargo_toml.package.name;
   version = Cargo_toml.package.version;
   src = pkgs.nix-gitignore.gitignoreSource [ ] ./.;
   buildInputs = gtkBuildInputs;
-  doCheck = false; # nothing to check atm
-  cargoSha256 = # pkgs.lib.fakeSha256
-    "1xpq7p5y10fn6mxwlgbm5ajf9ixrq0gia8v9rfbz4smhj9bbvw60";
-
-  # https://github.com/NixOS/nixpkgs/issues/79975
-  legacyCargoFetcher = true;
 }
