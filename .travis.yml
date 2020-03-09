@@ -1,0 +1,24 @@
+language: nix
+
+before_install:
+  # Add my Nix cache (jmackie.cachix.org)
+- sudo mkdir -p /etc/nix
+- echo "binary-caches = https://cache.nixos.org https://jmackie.cachix.org" | sudo tee -a /etc/nix/nix.conf > /dev/null
+- echo "binary-cache-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= jmackie.cachix.org-1:A3aexXezmMsIDaz+X3XTvPdMIpQB3Xv/mKSGGyGQNvk=" | sudo tee -a /etc/nix/nix.conf > /dev/null
+
+script:
+  # NOTE: $CACHIX_SIGNING_KEY is only defined on master,
+  # so we don't push branch builds to the cache.
+  #
+  # For cachix install instructions see https://github.com/cachix/cachix#installation
+  - |
+    if [ -n "$CACHIX_SIGNING_KEY" ]; then
+      nix-env -iA cachix -f https://cachix.org/api/v1/install
+      cachix use jmackie
+      cachix push --watch-store emoji-picker-deps emoji-picker &
+    fi
+
+  - nix-build
+  - sleep 10 # to allow cachix to finish uploading
+
+# See https://github.com/entropia/tip-toi-reveng/blob/master/.travis.yml
