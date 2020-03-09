@@ -1,4 +1,5 @@
 language: nix
+nix: 2.3.1
 
 before_install:
   # Add my Nix cache (jmackie.cachix.org)
@@ -15,7 +16,8 @@ script:
     if [ -n "$CACHIX_SIGNING_KEY" ]; then
       nix-env -iA cachix -f https://cachix.org/api/v1/install
       cachix use jmackie
-      cachix push --watch-store emoji-picker-deps emoji-picker &
+      cachix push --watch-store emoji-picker-deps &
+      cachix push --watch-store emoji-picker &
     fi
 
   - nix-build
