@@ -20,7 +20,7 @@ Or if you're using [Nix](https://nixos.org/):
 nix-env -f . -i
 ```
 
-In which case you might also want use my [`cachix`](https://jmackie.cachix.org) 👍
+In which case you might also want to use my [`cachix`](https://jmackie.cachix.org) 👍
 
 ```
 cachix use jmackie
