@@ -10,8 +10,19 @@
 
 ## Installation
 
+### Ubuntu
+
+Install the GTK dependencies:
+
 ```
-cargo install
+sudo apt install libgtk-3-dev
+```
+
+### Common steps
+
+```
+cargo build --release
+mv target/release/emoji-picker ~/.local/bin/
 ```
 
 Or if you're using [Nix](https://nixos.org/):
